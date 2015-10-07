@@ -16,9 +16,7 @@ This is implemented in the [Spring Boot 102](http://fuse-mars.github.io/spring-b
 ### Spring application - cqrs style
 We are going to split into two, the [project](https://github.com/fuse-mars/spring-boot-102) that we built in [spring-boot-102 tutorial](). One that processes commands and another that processes queries. Below is the schematic representation of what this separation looks like.
 
-```
-Image here
-```
+![Architecture schema](https://raw.githubusercontent.com/fuse-mars/spring-boot-103/master/tutorial-resource/architecture-schema.png)
 
 In the original architecture
 * Step 1: user sends a POST request to save data
