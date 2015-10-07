@@ -10,10 +10,10 @@ Two important terms here are:
 * Command: code execution that modifies(mutate) the application's state, In java this would represent all "setter" methods.
 * Query: code execution that **does not** modifies(mutate) the application's state, In java this would represent all "getter" methods.
 
-### Spring application - old style 
+### Spring application - original architechture 
 This is implemented in the [Spring Boot 102](http://fuse-mars.github.io/spring-boot-102)
 
-### Spring application - cqrs style
+### Spring application - cqrs based architechture
 We are going to split into two, the [project](https://github.com/fuse-mars/spring-boot-102) that we built in [spring-boot-102 tutorial](). One that processes commands and another that processes queries. Below is the schematic representation of what this separation looks like.
 
 ![Architecture schema](https://raw.githubusercontent.com/fuse-mars/spring-boot-103/master/tutorial-resource/architecture-schema.png)
