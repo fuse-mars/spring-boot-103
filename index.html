@@ -30,9 +30,10 @@
 <p>CQRS stands for Command Query Responsibility Segregation. It is a design pattern that enforces the separation of actions that modify the state of an application and the actions that leave the state of the application intact.</p>
 
 <ul>
-<li>Qoute from the <a href="https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf">inventor's paper</a>: "objects are split into two objects, one containing the Commands one containing the Queries."</li>
+<li>Quote from the <a href="https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf">inventor's paper</a>: "objects are split into two objects, one containing the Commands one containing the Queries."</li>
 <li>
 <a href="https://en.wikipedia.org/wiki/Command%E2%80%93query_separation">Idea behind the design</a> : Asking a question should not change the answer.</li>
+<li>Java terms:  If you have a return value you cannot mutate state. If you mutate state your return type must be void.</li>
 </ul>
 
 <p>Two important terms here are:</p>
@@ -156,7 +157,13 @@ spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
 <a id="other-main-usage-of-cqrs" class="anchor" href="#other-main-usage-of-cqrs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other main usage of CQRS</h3>
 
 <ul>
-<li>Event Sourcing: TODO </li>
+<li>Event Sourcing: 
+
+<ul>
+<li>In most cases, query handling application (Q app) has its own database and replicate the data from the main datastore(onwed by command handling app (C app) ). In order to achieve this, the Q app listens to <strong>events</strong> published by the C app. </li>
+</ul>
+</li>
+<li>TODO </li>
 </ul>
 
 <h3>
