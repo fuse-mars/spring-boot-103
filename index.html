@@ -35,6 +35,13 @@
 <a href="https://en.wikipedia.org/wiki/Command%E2%80%93query_separation">Idea behind the design</a> : Asking a question should not change the answer.</li>
 </ul>
 
+<p>Two important terms here are:</p>
+
+<ul>
+<li>Command: code execution that modifies(mutate) the application's state, In java this would represent all "setter" methods.</li>
+<li>Query: code execution that <strong>does not</strong> modifies(mutate) the application's state, In java this would represent all "getter" methods.</li>
+</ul>
+
 <h3>
 <a id="spring-application---old-style" class="anchor" href="#spring-application---old-style" aria-hidden="true"><span class="octicon octicon-link"></span></a>Spring application - old style</h3>
 
@@ -43,7 +50,86 @@
 <h3>
 <a id="spring-application---cqrs-style" class="anchor" href="#spring-application---cqrs-style" aria-hidden="true"><span class="octicon octicon-link"></span></a>Spring application - cqrs style</h3>
 
-<p>TODO</p>
+<p>We are going to split into two, the <a href="https://github.com/fuse-mars/spring-boot-102">project</a> that we built in <a href="">spring-boot-102 tutorial</a>. One that processes commands and another that processes queries. Below is the schematic representation of what this separation looks like.</p>
+
+<p><img src="https://raw.githubusercontent.com/fuse-mars/spring-boot-103/master/tutorial-resource/architecture-schema.png" alt="Architecture schema"></p>
+
+<p>In the original architecture</p>
+
+<ul>
+<li>Step 1: user sends a POST request to save data</li>
+<li>Step 2: application responds with the <strong>save data or data related errors</strong>
+</li>
+<li>Step 3: user sends a GET request to read the saved data</li>
+<li>Step 4: application responds with the save data or request related errors </li>
+</ul>
+
+<p>In the CQRS based architecture</p>
+
+<ul>
+<li>Step 1: user sends a POST request to save data</li>
+<li>Step 2: application responds with an <strong>ACK/NACK message</strong> saying that the POST request has been received or has been rejected.</li>
+<li>Step 3: user sends a GET request to read the saved data.</li>
+<li>Step 4: application responds with the save data or request related errors.</li>
+</ul>
+
+<h3>
+<a id="technology" class="anchor" href="#technology" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technology</h3>
+
+<ul>
+<li><a href="https://gradle.org/">Gradle</a></li>
+<li><a href="http://projects.spring.io/spring-boot/">Spring Boot</a></li>
+<li><a href="http://projects.spring.io/spring-data/">Spring Data</a></li>
+</ul>
+
+<h3>
+<a id="step-followed" class="anchor" href="#step-followed" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step followed</h3>
+
+<ul>
+<li>Add a mysql database</li>
+</ul>
+
+<p>We can't use the in-memory database anymore because both applications have to access the same datastore.</p>
+
+<ul>
+<li>Create command handler application: 
+
+<ul>
+<li>This app is almost the same as the old application except, we disabled the all request methods except POST and DELETE,  The getters method have also been removed, and the response returned to the user is now an acknowledgment instead of the saved object.</li>
+</ul>
+</li>
+</ul>
+
+<pre><code>TODO add code snippets
+</code></pre>
+
+<ul>
+<li>Create Query handler application: 
+
+<ul>
+<li>We have removed the setters from the object model. </li>
+</ul>
+</li>
+</ul>
+
+<pre><code>TODO add code snippets
+</code></pre>
+
+<h3>
+<a id="other-main-usage-of-cqrs" class="anchor" href="#other-main-usage-of-cqrs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other main usage of CQRS</h3>
+
+<ul>
+<li>Event Sourcing: TODO </li>
+</ul>
+
+<h3>
+<a id="resource" class="anchor" href="#resource" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resource:</h3>
+
+<ul>
+<li><a href="https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf">https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Command%E2%80%93query_separation">https://en.wikipedia.org/wiki/Command%E2%80%93query_separation</a></li>
+<li>
+</ul>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/fuse-mars/spring-boot-103">Spring-boot-103</a> is maintained by <a href="https://github.com/fuse-mars">fuse-mars</a>.</span>
@@ -53,6 +139,16 @@
 
     </section>
 
-  
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-68265226-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
