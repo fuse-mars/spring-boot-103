@@ -1,10 +1,11 @@
-# spring-boot-103
+### Overview
 Two applications that fulfill the Command Query Responsibilities Segregation (CQRS) pattern implementation.
 
 ### CQRS in simple terms
   CQRS stands for Command Query Responsibility Segregation. It is a design pattern that enforces the separation of actions that modify the state of an application and the actions that leave the state of the application intact.
-* Qoute from the [inventor's paper](https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf): "objects are split into two objects, one containing the Commands one containing the Queries."
+* Quote from the [inventor's paper](https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf): "objects are split into two objects, one containing the Commands one containing the Queries."
 * [Idea behind the design](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation) : Asking a question should not change the answer.
+* Java terms:  If you have a return value you cannot mutate state. If you mutate state your return type must be void.
 
 Two important terms here are:
 * Command: code execution that modifies(mutate) the application's state, In java this would represent all "setter" methods.
@@ -81,7 +82,9 @@ TODO add code snippets
 ```
 
 ### Other main usage of CQRS
-* Event Sourcing: TODO 
+* Event Sourcing: 
+  * In most cases, query handling application (Q app) has its own database and replicate the data from the main datastore(onwed by command handling app (C app) ). In order to achieve this, the Q app listens to **events** published by the C app. 
+* TODO 
 
 ### Resource:
 * https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf
