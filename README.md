@@ -36,9 +36,35 @@ In the CQRS based architecture
 * [Spring Data](http://projects.spring.io/spring-data/)
 
 ### Step followed
-* Add a mysql database
+* Add a mysql database:  We can't use the in-memory database anymore because both applications have to access the same datastore.
+  * Make sure you have a mysql database management server running locally, I use [MAMP](https://www.mamp.info/en/) 
+  * add dependency 
+```
+# build.gradle
+# compile 'com.h2database:h2' removed
+compile 'mysql:mysql-connector-java' # added
+```
+  * add configuration values
+```
+touch application.properties
+```
+```
+# content of the application.properties
 
-We can't use the in-memory database anymore because both applications have to access the same datastore.
+spring.datasource.url=jdbc:mysql://localhost/springboot103
+spring.datasource.username=spring
+spring.datasource.password=spring
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+spring.jpa.show-sql = true
+spring.jpa.hibernate.ddl-auto = update
+spring.jpa.hibernate.naming-strategy = org.hibernate.cfg.ImprovedNamingStrategy
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
+
+
+```
+  * Create a database called `springboot103`
+  * Create a user/password `spring/spring` with read write access to the just created databse
 
 * Create command handler application: 
   * This app is almost the same as the old application except, we disabled the all request methods except POST and DELETE,  The getters method have also been removed, and the response returned to the user is now an acknowledgment instead of the saved object.
@@ -60,4 +86,4 @@ TODO add code snippets
 ### Resource:
 * https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf
 * https://en.wikipedia.org/wiki/Command%E2%80%93query_separation
-* 
+* https://github.com/netgloo/spring-boot-samples/blob/master/spring-boot-mysql-springdatajpa-hibernate/src/main/resources/application.properties
