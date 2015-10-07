@@ -38,13 +38,23 @@ In the CQRS based architecture
 * [Spring Data](http://projects.spring.io/spring-data/)
 
 ### Step followed
+* Add a mysql database
+
+We can't use the in-memory database anymore because both applications have to access the same datastore.
+
 * Create command handler application: 
   * This app is almost the same as the old application except, we disabled the all request methods except POST and DELETE,  The getters method have also been removed, and the response returned to the user is now an acknowledgment instead of the saved object.
 
+```
+TODO add code snippets
+```
 
 * Create Query handler application: 
   * We have removed the setters from the object model. 
 
+```
+TODO add code snippets
+```
 
 ### Other main usage of CQRS
 * Event Sourcing: TODO 
