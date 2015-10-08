@@ -13,6 +13,8 @@
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'eclipse'
+
 
 springBoot {
   mainClass = 'apispec.ApiSpecController'
@@ -32,7 +34,7 @@ targetCompatibility = 1.8
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-data-rest'
+	compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile 'mysql:mysql-connector-java'
 
