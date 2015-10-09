@@ -96,9 +96,7 @@ Usage (with CQRS):
 
 * By analyzing(replaying) all events in order, you should get the present state of the system
 * Below is an example from [Benjamin and Johannes' tutorial](https://ookami86.github.io/event-sourcing-in-practice)
-```
-Image here
-```
+![event-replay-in-action](https://raw.githubusercontent.com/fuse-mars/spring-boot-103/master/tutorial-resource/event-replay-in-action.png)
 * **Note** that that this can also be used when responding to queries
   * If you want to keep track how often users access your application
 
