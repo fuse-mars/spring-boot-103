@@ -156,14 +156,39 @@ spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
 <h3>
 <a id="other-main-usage-of-cqrs" class="anchor" href="#other-main-usage-of-cqrs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other main usage of CQRS</h3>
 
-<ul>
-<li>Event Sourcing: 
+<p><strong>Event sourcing:</strong> </p>
+
+<p>Definition: </p>
 
 <ul>
-<li>In most cases, query handling application (Q app) has its own database and replicate the data from the main datastore(onwed by command handling app (C app) ). In order to achieve this, the Q app listens to <strong>events</strong> published by the C app. </li>
+<li>Event sourcing is a way of persisting your application's state by storing the history that determines the current state of your application. "From <a href="https://msdn.microsoft.com/en-us/library/jj591559.aspx">Microsoft</a>"</li>
+</ul>
+
+<p>Usage (with CQRS):</p>
+
+<ul>
+<li>Every command initiate a task execution</li>
+<li>
+<p>Every successful task execution is accompanied with an event, which is basically a historical record describing the impact of this task execution on the system’s state.</p>
+
+<ul>
+<li>For restful applications, System’s state is represented by the datastore</li>
+<li>For stateful applications, System’s state is represented by the state of objects in memory</li>
+<li>Here is good explanation: <a href="http://programmers.stackexchange.com/questions/101337/whats-the-difference-between-stateful-and-stateless">stateless vs statefull</a>
+</li>
 </ul>
 </li>
-<li>TODO </li>
+<li><p>By analyzing(replaying) all events in order, you should get the present state of the system</p></li>
+<li>Below is an example from <a href="https://ookami86.github.io/event-sourcing-in-practice">Benjamin and Johannes' tutorial</a>
+<img src="https://raw.githubusercontent.com/fuse-mars/spring-boot-103/master/tutorial-resource/event-replay-in-action.png" alt="event-replay-in-action">
+</li>
+<li>
+<strong>Note</strong> that that this can also be used when responding to queries
+
+<ul>
+<li>If you want to keep track how often users access your application</li>
+</ul>
+</li>
 </ul>
 
 <h3>
