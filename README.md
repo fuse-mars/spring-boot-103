@@ -99,7 +99,7 @@ Usage (with CQRS):
 ```
 Image here
 ```
-* Note that that this can also be used when responding to queries
+* **Note** that that this can also be used when responding to queries
   * If you want to keep track how often users access your application
 
 
