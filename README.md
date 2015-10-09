@@ -82,9 +82,24 @@ TODO add code snippets
 ```
 
 ### Other main usage of CQRS
-* Event Sourcing: 
-  * In most cases, query handling application (Q app) has its own database and replicate the data from the main datastore(onwed by command handling app (C app) ). In order to achieve this, the Q app listens to **events** published by the C app. 
-* TODO 
+Event sourcing: 
+Definition: Event sourcing is a way of persisting your application's state by storing the history that determines the current state of your application. "From [Microsoft](https://msdn.microsoft.com/en-us/library/jj591559.aspx)"
+
+Usage (with CQRS):
+* Every command initiate a task execution
+* Every successful task execution is accompanied with an event, which is basically a historical record describing the impact of this task execution on the system’s state.
+  * For restful applications, System’s state is represented by the datastore
+  * For stateful applications, System’s state is represented by the state of objects in memory
+  * Here is good explanation: http://programmers.stackexchange.com/questions/101337/whats-the-difference-between-stateful-and-stateless
+
+* By analyzing(replaying) all events in order, you should get the present state of the system
+* Below is an example from [Benjamin and Johannes' tutorial](https://ookami86.github.io/event-sourcing-in-practice)
+```
+Image here
+```
+* Note that that this can also be used when responding to queries
+  * If you want to keep track how often users access your application
+
 
 ### Resource:
 * https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf
